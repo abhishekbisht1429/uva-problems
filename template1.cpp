@@ -3,6 +3,9 @@
 
 using namespace std;
 
+void ignore_line() {
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
 int main() {
     #ifdef DEBUG
     ifstream in("input.txt");
