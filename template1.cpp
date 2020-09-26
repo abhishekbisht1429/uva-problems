@@ -3,8 +3,9 @@
 
 using namespace std;
 
-void ignore_line() {
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+void ignore_line(int n) {
+    while(n--)
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 int main() {
     #ifdef DEBUG
