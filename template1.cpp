@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void ignore_line(int n) {
+void ignore_lines(int n) {
     while(n--)
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
