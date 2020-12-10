@@ -1,7 +1,8 @@
-**/a.out
+**/*.out
 **/input.txt
 **/output.txt
 unsolved/**
 **/.vscode/**
 **/test/**
 problems/**
+**/*.code-workspace
