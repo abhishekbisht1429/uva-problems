@@ -1,0 +1,94 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define DEBUG
+
+#define _umap unordered_map
+#define _uset unordered_set
+#define _uint unsigned int
+#define _ll long long
+#define _ull unsigned _ll
+#define _vec vector
+#define _tp tuple
+#define _p pair
+
+#define _ignore_lines(n) for(int i=0;i<n;++i) cin.ignore(numeric_limits<streamsize>::max(), '\n')
+
+/* Bit Manipulation */
+#define _isSet(n, i) ((n) & (1u<<(i)))
+#define _set(n, i) n = (n | (1u<<(i))) 
+#define _reset(n, i) n = (n & (~(1u<<(i))))
+#define _flip(n, i) n = (n ^ (1u<<(i)))
+#define _rset(n, i, cnt) n = n | (((1u<<(cnt))-1)<<i)
+#define _rreset(n, i, cnt) n = n & ~(((1u<<(cnt))-1)<<i)
+#define _ffzi(n, i) __builtin_ffs(~(((1u<<i+1)-1) | n))
+
+#define _isSetl(n, i) ((n) & (1ull<<(i)))
+#define _setl(n, i) n = ((n) | (1ull<<(i))) 
+#define _resetl(n, i) n = (n & (~(1ull<<(i))))
+#define _flipl(n, i) n = ((n) ^ (1ull<<(i)))
+#define _rsetl(n, i, cnt) n = n | (((1ull<<(cnt))-1)<<i)
+#define _rresetl(n, i, cnt) n = n & ~(((1ull<<(cnt))-1)<<i)
+#define _ffzil(n, i) __builtin_ffs(~(((1ull<<i+1)-1) | n))
+
+typedef _p<int, int> _ii;
+
+void printSol(_vec<int> &p, _vec<int> &nums, int end) {
+    if(end == -1)
+        return;
+    
+    printSol(p, nums, p[end]);
+    cout<<nums[end]<<"\n";
+}
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    #ifdef DEBUG
+    ifstream _in("input.txt");
+    ofstream _out("output.txt");
+    streambuf* _in_backup = cin.rdbuf();
+    streambuf* _out_backup = cout.rdbuf();
+    cin.rdbuf(_in.rdbuf());
+    cout.rdbuf(_out.rdbuf());
+    auto _start = chrono::high_resolution_clock::now();
+    #endif
+    /* ######################CODE_START################################ */
+    _vec<int> nums;
+    while(1) {
+        int num;
+        cin>>num;
+        if(cin.fail()) break;
+        nums.push_back(num);
+    }
+
+    vector<int> l;
+    vector<int> li;
+    vector<int> p(nums.size(), -1);
+    int end = 0;
+    for(int i=0; i<nums.size(); ++i) {
+        int pos = lower_bound(l.begin(), l.end(), nums[i]) - l.begin();
+        if(pos == l.size()) {
+            l.push_back(nums[i]);
+            li.push_back(i);
+        } else {
+            l[pos] = nums[i];
+            li[pos] = i;
+        }
+        p[i] = (pos>0)?li[pos-1]:-1;
+    }
+    cout<<l.size()<<"\n";
+    cout<<"-\n";
+    printSol(p, nums, li[li.size()-1]);
+    /* #######################CODE_END############################### */
+    #ifdef DEBUG
+    auto _end = chrono::high_resolution_clock::now();
+    auto _duration = chrono::duration_cast<chrono::nanoseconds>(_end - _start);
+    _ll _ns = _duration.count();
+    double _s = _ns / 1e9;
+    cout<<"\nDuration: "<<_s<<" sec\n";
+    cin.rdbuf(_in_backup);
+    cout.rdbuf(_out_backup);
+    #endif
+    return 0;
+}
