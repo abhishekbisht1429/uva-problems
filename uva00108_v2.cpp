@@ -69,7 +69,7 @@ int main() {
         for(int i1 = 0; i1<n; ++i1) {
             for(int i2 = i1; i2<n; ++i2) {
                 for(int j=0; j<n; ++j)
-                    squashed_col[j] = cum_mat[i2][j] - cum_mat[i1][j];
+                    squashed_col[j] = cum_mat[i2][j] - ((i1>0)?cum_mat[i1-1][j]:0);
                 
                 int max_sqs_sum = INT_MIN, sum = 0;
                 for(int j=0; j<n; ++j) {
