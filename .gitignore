@@ -6,3 +6,6 @@ unsolved/**
 **/test/**
 problems/**
 **/*.code-workspace
+.idea
+cmake-build-debug
+CMakeLists.txt
